@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.com.alura.screenmatch.model.DadosEpisodios;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.services.ConsumoAPI;
 import br.com.alura.screenmatch.services.ConverteDados;
@@ -25,6 +26,9 @@ public class ScreenmatchApplication implements CommandLineRunner{
 		ConverteDados conversor = new ConverteDados();
 		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
 		System.out.println(dados);
+		json = consumoapi.obterDados("http://www.omdbapi.com/?i=smallville&season=1&episode=2&apikey=b166411f");
+		DadosEpisodios dadosEpisodio = conversor.obterDados(json, DadosEpisodios.class);
+		System.out.println(dadosEpisodio);
 	}
 
 }
